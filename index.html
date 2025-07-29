@@ -22,17 +22,29 @@
       transition: background .3s, color .3s; }
 
     /* ─── Menu Bar ─── */
-    .menu-bar { height:48px; background:#E0E0E0; border-bottom:1px solid #FFF;
-      box-shadow: inset 0 3px #888; display:flex; align-items:center; padding:0 18px;
-      user-select:none; font-size:24px; }
-    .menu-bar .icon { width:36px; height:36px; margin-right:18px;
-      background:url('https://assets.website-files.com/6155ec0bb01f3a4a7e016c93/64eb90b9f2980d7f3f6e71d8_avatar.png') no-repeat center/contain; }
-    .menu-bar .menu-items { display:flex; gap:36px; }
-    .menu-bar .menu-items div:hover { text-decoration:underline; }
+    .menu-bar {
+      height:48px; background:#E0E0E0; border-bottom:1px solid #FFF;
+      box-shadow: inset 0 3px #888;
+      display:flex; align-items:center; padding:0 12px;
+      user-select:none; font-size:24px;
+    }
+    .menu-bar .icon {
+      width:28px; height:28px;
+      margin-right:16px;
+      display:block; object-fit:contain;
+    }
+    .menu-bar .menu-items {
+      display:flex; gap:36px; align-items:center;
+    }
+    .menu-bar .menu-items div:hover {
+      text-decoration:underline; cursor:default;
+    }
 
     /* ─── Desktop Icons ─── */
-    #desktop-icons { position:absolute; top:48px; right:18px;
-      display:flex; flex-direction:column; gap:24px; padding:12px; }
+    #desktop-icons {
+      position:absolute; top:48px; right:18px;
+      display:flex; flex-direction:column; gap:24px; padding:12px;
+    }
     .desktop-icon { width:144px; text-align:center; cursor:pointer; }
     .desktop-icon img { width:72px; height:72px; }
     .desktop-icon[data-win="blog"] img { width:99px; height:99px; }
@@ -43,67 +55,107 @@
       background:#C0C0C0; border:6px solid #FFF;
       border-right-color:#888; border-bottom-color:#888;
       display:none; flex-direction:column; font-size:21px;
-      border-radius:12px; overflow:hidden; }
-    .window .titlebar { height:48px; background:#E0E0E0;
-      border-bottom:3px solid #888; display:flex; align-items:center;
-      padding:0 12px; cursor:move; user-select:none; font-size:24px; }
+      border-radius:12px; overflow:hidden;
+    }
+    .window .titlebar {
+      height:48px; background:#E0E0E0; border-bottom:3px solid #888;
+      display:flex; align-items:center; padding:0 12px;
+      cursor:move; user-select:none; font-size:24px;
+    }
     .window .buttons { display:flex; gap:12px; margin-right:18px; }
-    .window .btn { width:27px; height:27px; border:3px solid #000;
-      background:#E0E0E0; border-radius:50%; }
-    .btn.close::after { content:'✕'; font-size:21px; line-height:27px; }
-    .window .content { flex:1; background:var(--mac-gray);
+    .window .btn {
+      width:27px; height:27px; border:3px solid #000;
+      background:#E0E0E0; border-radius:50%;
+    }
+    .btn.close::after {
+      content:'✕'; font-size:21px; line-height:27px; text-align:center;
+    }
+    .window .content {
+      flex:1; background:var(--mac-gray);
       border-top:3px solid #888; border-left:3px solid #888;
       border-right:3px solid #FFF; border-bottom:3px solid #FFF;
       padding:18px; overflow:auto;
       border-bottom-left-radius:12px;
-      border-bottom-right-radius:12px; }
+      border-bottom-right-radius:12px;
+    }
 
     /* ─── Popup Overlay & Dialog ─── */
-    .popup-overlay { position:fixed; top:0; left:0; right:0; bottom:0;
+    .popup-overlay {
+      position:fixed; top:0; left:0; right:0; bottom:0;
       background:rgba(0,0,0,0.3); display:none;
-      align-items:center; justify-content:center; z-index:9999; }
-    .popup { width:67.5vw; height:67.5vh;
+      align-items:center; justify-content:center; z-index:9999;
+    }
+    .popup {
+      width:67.5vw; height:67.5vh;
       background:#C0C0C0; border:6px solid #FFF;
       border-right-color:#888; border-bottom-color:#888;
-      display:flex; flex-direction:column; border-radius:12px; overflow:hidden; }
-    .popup .titlebar { height:40px; background:#E0E0E0;
-      border-bottom:3px solid #888; display:flex; align-items:center;
-      padding:0 10px; font-size:18px; user-select:none;
-      border-top-left-radius:6px; border-top-right-radius:6px; }
-    .popup .content { flex:1; background:var(--mac-gray);
-      padding:18px; overflow:auto; font-size:21px; line-height:1.4; }
+      display:flex; flex-direction:column; border-radius:12px; overflow:hidden;
+    }
+    .popup .titlebar {
+      height:40px; background:#E0E0E0; border-bottom:3px solid #888;
+      display:flex; align-items:center; padding:0 10px;
+      font-size:18px; user-select:none;
+      border-top-left-radius:6px; border-top-right-radius:6px;
+    }
+    .popup .content {
+      flex:1; background:var(--mac-gray);
+      padding:18px; overflow:auto; font-size:21px; line-height:1.4;
+    }
     .popup .actions { display:flex; justify-content:flex-end; padding:8px; }
-    .popup button { font-family:'Chicago',monospace;
-      font-size:18px; padding:6px 14px; border:3px solid #000;
-      background:#E0E0E0; cursor:pointer; user-select:none; }
+    .popup button {
+      font-family:'Chicago',monospace; font-size:18px;
+      padding:6px 14px; border:3px solid #000;
+      background:#E0E0E0; cursor:pointer; user-select:none;
+    }
     .popup button:hover { background:#DDD; }
 
     /* ─── macOS traffic lights ─── */
-    .mac-buttons { position:absolute; top:10px; right:10px;
-      display:flex; gap:8px; z-index:10000; }
+    .mac-buttons {
+      position:absolute; top:10px; right:10px;
+      display:flex; gap:8px; z-index:10000;
+    }
     .mac-btn { width:14px; height:14px; border-radius:50%; border:none; }
     .mac-btn.green  { background:#28c840; }
     .mac-btn.yellow { background:#ffbd2e; }
     .mac-btn.red    { background:#ff5f57; }
     body.light-mode { color:#000 !important; }
-    body.dark-mode { background:#1e1e1e !important; color:#f5f5f5 !important; }
+    body.dark-mode  { background:#1e1e1e !important; color:#f5f5f5 !important; }
   </style>
 </head>
 <body>
   <div class="frame">
+    <!-- traffic lights -->
     <div class="mac-buttons">
       <button id="btn-light" class="mac-btn green" title="Light Mode"></button>
       <button id="btn-hidden" class="mac-btn yellow"></button>
       <button id="btn-dark" class="mac-btn red" title="Dark Mode"></button>
     </div>
+
+    <!-- Menu Bar -->
     <div class="menu-bar">
-      <div class="icon"></div>
-      <div class="menu-items"><div>Work</div><div>Webflow</div><div>Favorites</div><div>Social</div></div>
+      <!-- Iconița personalizată în stânga sus -->
+      <img src="cub_mic-removebg-preview.png" class="icon" alt="" />
+      <div class="menu-items">
+        <div>Work</div>
+        <div>Favorites</div>
+        <div>Social</div>
+      </div>
     </div>
+
+    <!-- Desktop Icons -->
     <div id="desktop-icons">
-      <div class="desktop-icon" data-win="readme"><img src="icons/readme.svg" alt="Read Me"><div>Read Me</div></div>
-      <div class="desktop-icon" data-win="blog"><img src="icons/icon.png" alt="Blog"><div>Blog</div></div>
-      <div class="desktop-icon" data-win="trash"><img src="icons/trash.png" alt="Trash"><div>Trash</div></div>
+      <div class="desktop-icon" data-win="readme">
+        <img src="icons/readme.svg" alt="Read Me">
+        <div>Read Me</div>
+      </div>
+      <div class="desktop-icon" data-win="blog">
+        <img src="icons/icon.png" alt="Blog">
+        <div>Blog</div>
+      </div>
+      <div class="desktop-icon" data-win="trash">
+        <img src="icons/trash.png" alt="Trash">
+        <div>Trash</div>
+      </div>
     </div>
 
     <!-- Read Me Popup -->
@@ -112,18 +164,13 @@
         <div class="titlebar">Read Me</div>
         <div class="content">
           <h1>Michael</h1>
-          <br>
           <p><strong>Life is a journey. Just keep moving.</strong></p>
-          <br>
           <p>Originally from Bucharest City but have lived in Ireland for half a year, and am currently in Bucharest again. My family and I enjoy traveling and experiencing other cultures. The world and its people are amazing!</p>
-          <br>
           <h2>What I do</h2>
-          <br>
-          <p>My background since 2019 is in IT with experience in programming, developing, and web design. Then I transitioned to a network administrator building custom solutions using <a href="https://chat.mistral.ai/agents" target="_blank">Mistral Agents</a>. Now I work at Salt Bank as an IT Network Administrator</p>
-          <br>
+          <p>My background since 2019 is in IT with experience in programming, developing, and web design. Then I transitioned to a network administrator building custom solutions using <a href="https://chat.mistral.ai/agents" target="_blank">Mistral Agents</a>. Now I work at Salt Bank as an IT Network Administrator.</p>
           <h2>This Site</h2>
-          <br>
           <p>Oh and you might have noticed that I'm a Macintosh fan. Been a user since 2009. My career in IT wouldn't have been possible without Macs.</p>
+          <p>Feel free to browse around my virtual computer. You never know what you might find.</p>
         </div>
         <div class="actions"><button id="closePopup">OK</button></div>
       </div>
@@ -134,7 +181,8 @@
       <div class="popup">
         <div class="titlebar">Blog</div>
         <div class="content">
-          <iframe src="https://mihaaaailai.github.io/Website/" style="width:100%; height:100%; border:none;"></iframe>
+          <iframe src="https://mihaaaailai.github.io/Website/"
+                  style="width:100%; height:100%; border:none;"></iframe>
         </div>
         <div class="actions"><button id="closeBlogPopup">Close</button></div>
       </div>
@@ -143,35 +191,55 @@
   </div>
   <script>
     // Theme toggling
-    function setTheme(t){ document.body.classList.remove('light-mode','dark-mode'); document.body.classList.add(t); localStorage.setItem('theme',t); }
-    document.getElementById('btn-dark').onclick=()=>setTheme('dark-mode');
-    document.getElementById('btn-light').onclick=()=>setTheme('light-mode');
-    (function(){ const s=localStorage.getItem('theme'); if(s) setTheme(s); else if(window.matchMedia('(prefers-color-scheme:dark)').matches) setTheme('dark-mode'); })();
+    function setTheme(t) {
+      document.body.classList.remove('light-mode','dark-mode');
+      document.body.classList.add(t);
+      localStorage.setItem('theme',t);
+    }
+    document.getElementById('btn-dark').onclick  = () => setTheme('dark-mode');
+    document.getElementById('btn-light').onclick = () => setTheme('light-mode');
+    (function(){
+      const s = localStorage.getItem('theme');
+      if(s) setTheme(s);
+      else if(window.matchMedia('(prefers-color-scheme:dark)').matches)
+        setTheme('dark-mode');
+    })();
 
-    let z=1, bring=el=>el.style.zIndex=++z;
-    const readmePopup=document.getElementById('myPopup');
-    const blogPopup=document.getElementById('blogPopup');
+    // Z-index bring
+    let z=1;
+    const bring = el => el.style.zIndex = ++z;
+
+    const readmePopup = document.getElementById('myPopup');
+    const blogPopup   = document.getElementById('blogPopup');
 
     // Icon handlers
-    document.querySelector('.desktop-icon[data-win="readme"]').ondblclick=_=>readmePopup.style.display='flex';
-    document.querySelector('.desktop-icon[data-win="blog"]').ondblclick=_=>blogPopup.style.display='flex';
-    document.querySelectorAll('.desktop-icon').forEach(ic=>{
-      if(['readme','blog'].includes(ic.dataset.win)) return;
-      ic.ondblclick=_=>{ const w=document.getElementById(ic.dataset.win); w.style.display='flex'; w.style.top='60px'; w.style.left='60px'; bring(w); }
+    document.querySelector('.desktop-icon[data-win="readme"]').ondblclick = () => readmePopup.style.display = 'flex';
+    document.querySelector('.desktop-icon[data-win="blog"]').ondblclick   = () => blogPopup.style.display   = 'flex';
+
+    document.querySelectorAll('.desktop-icon').forEach(ic => {
+      if (['readme','blog'].includes(ic.dataset.win)) return;
+      ic.ondblclick = () => {
+        const w = document.getElementById(ic.dataset.win);
+        w.style.display = 'flex';
+        w.style.top = '60px';
+        w.style.left = '60px';
+        bring(w);
+      };
     });
 
     // Close buttons
-    document.getElementById('closePopup').onclick=_=>readmePopup.style.display='none';
-    document.getElementById('closeBlogPopup').onclick=_=>blogPopup.style.display='none';
-    document.querySelectorAll('.btn.close').forEach(b=>b.onclick=_=>b.closest('.window').style.display='none');
+    document.getElementById('closePopup').onclick     = () => readmePopup.style.display = 'none';
+    document.getElementById('closeBlogPopup').onclick = () => blogPopup.style.display   = 'none';
+    document.querySelectorAll('.btn.close').forEach(b => b.onclick = () => b.closest('.window').style.display = 'none');
 
     // Drag windows
-    document.querySelectorAll('.window').forEach(win=>{ let drag=false,ox=0,oy=0; const bar=win.querySelector('.titlebar');
-      bar.onpointerdown=e=>{ drag=true; ox=e.clientX-win.offsetLeft; oy=e.clientY-win.offsetTop; bring(win); };
-      document.onpointermove=e=>drag&&(win.style.left=(e.clientX-ox)+'px', win.style.top=(e.clientY-oy)+'px');
-      document.onpointerup=_=>drag=false;
+    document.querySelectorAll('.window').forEach(win => {
+      let drag=false, ox=0, oy=0;
+      const bar = win.querySelector('.titlebar');
+      bar.onpointerdown = e => { drag=true; ox=e.clientX-win.offsetLeft; oy=e.clientY-win.offsetTop; bring(win); };
+      document.onpointermove = e => drag && (win.style.left=(e.clientX-ox)+'px', win.style.top=(e.clientY-oy)+'px');
+      document.onpointerup   = () => drag=false;
     });
   </script>
 </body>
 </html>
-
