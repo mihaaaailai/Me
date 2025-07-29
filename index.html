@@ -109,7 +109,7 @@
     }
     .popup button:hover { background:#DDD; }
 
-    /* ─── macOS traffic lights ─── */
+    /* ─── macOS traffic lights (static) ─── */
     .mac-buttons {
       position:absolute; top:10px; right:10px;
       display:flex; gap:8px; z-index:10000;
@@ -118,22 +118,19 @@
     .mac-btn.green  { background:#28c840; }
     .mac-btn.yellow { background:#ffbd2e; }
     .mac-btn.red    { background:#ff5f57; }
-    body.light-mode { color:#000 !important; }
-    body.dark-mode  { background:#1e1e1e !important; color:#f5f5f5 !important; }
   </style>
 </head>
 <body>
   <div class="frame">
-    <!-- traffic lights -->
+    <!-- traffic lights (static) -->
     <div class="mac-buttons">
-      <button id="btn-light" class="mac-btn green" title="Light Mode"></button>
-      <button id="btn-hidden" class="mac-btn yellow"></button>
-      <button id="btn-dark" class="mac-btn red" title="Dark Mode"></button>
+      <button class="mac-btn green"></button>
+      <button class="mac-btn yellow"></button>
+      <button class="mac-btn red"></button>
     </div>
 
     <!-- Menu Bar -->
     <div class="menu-bar">
-      <!-- Iconița personalizată în stânga sus -->
       <img src="cub_mic-removebg-preview.png" class="icon" alt="" />
       <div class="menu-items">
         <div>Work</div>
@@ -190,21 +187,6 @@
 
   </div>
   <script>
-    // Theme toggling
-    function setTheme(t) {
-      document.body.classList.remove('light-mode','dark-mode');
-      document.body.classList.add(t);
-      localStorage.setItem('theme',t);
-    }
-    document.getElementById('btn-dark').onclick  = () => setTheme('dark-mode');
-    document.getElementById('btn-light').onclick = () => setTheme('light-mode');
-    (function(){
-      const s = localStorage.getItem('theme');
-      if(s) setTheme(s);
-      else if(window.matchMedia('(prefers-color-scheme:dark)').matches)
-        setTheme('dark-mode');
-    })();
-
     // Z-index bring
     let z=1;
     const bring = el => el.style.zIndex = ++z;
