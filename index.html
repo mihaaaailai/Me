@@ -109,6 +109,21 @@
     }
     .popup button:hover { background:#DDD; }
 
+    /* ─── Popups mici (Social & Favorites) ─── */
+    .popup.small {
+      width:300px; height:150px; border-radius:8px;
+    }
+    .popup.small .content {
+      display:flex; justify-content:space-around; align-items:center;
+      height:calc(100% - 60px);
+    }
+    .popup.small .link-btn {
+      font-family:'Chicago',monospace; font-size:18px;
+      padding:6px 12px; border:3px solid #000;
+      background:#E0E0E0; cursor:pointer;
+    }
+    .popup.small .link-btn:hover { background:#DDD; }
+
     /* ─── macOS traffic lights (static) ─── */
     .mac-buttons {
       position:absolute; top:10px; right:10px;
@@ -164,12 +179,10 @@
           <br>
           <p><strong>Life is a journey. Just keep moving.</strong></p>
           <p>Originally from Bucharest City but have lived in Ireland for half a year, and am currently in Bucharest again. My family and I enjoy traveling and experiencing other cultures. The world and its people are amazing!</p>
-          
           <br>
           <h2>What I do</h2>
           <br>
-          
-         <p>My background since 2019 is in IT with experience in programming, developing, and web design. Then I transitioned to a network administrator building custom solutions using <a href="https://chat.mistral.ai/agents" target="_blank">Mistral Agents</a>. Now I work at Salt Bank as an IT Network Administrator.</p>
+          <p>My background since 2019 is in IT with experience in programming, developing, and web design. Then I transitioned to a network administrator building custom solutions using <a href="https://chat.mistral.ai/agents" target="_blank">Mistral Agents</a>. Now I work at Salt Bank as an IT Network Administrator.</p>
           <br>
           <h2>This Site</h2>
           <br>
@@ -192,6 +205,29 @@
       </div>
     </div>
 
+    <!-- Social Popup -->
+    <div class="popup-overlay" id="socialPopup">
+      <div class="popup small">
+        <div class="titlebar">Social</div>
+        <div class="content">
+          <button class="link-btn" data-url="https://www.linkedin.com/in/username">LinkedIn</button>
+          <button class="link-btn" data-url="https://unsplash.com/@username">Unsplash</button>
+        </div>
+        <div class="actions"><button id="closeSocial">Close</button></div>
+      </div>
+    </div>
+
+    <!-- Favorites Popup -->
+    <div class="popup-overlay" id="favoritesPopup">
+      <div class="popup small">
+        <div class="titlebar">Favorites</div>
+        <div class="content">
+          <button class="link-btn" data-url="https://example.com/news">News</button>
+        </div>
+        <div class="actions"><button id="closeFavorites">Close</button></div>
+      </div>
+    </div>
+
   </div>
   <script>
     // Z-index bring
@@ -200,6 +236,8 @@
 
     const readmePopup = document.getElementById('myPopup');
     const blogPopup   = document.getElementById('blogPopup');
+    const socialPopup = document.getElementById('socialPopup');
+    const favoritesPopup = document.getElementById('favoritesPopup');
 
     // Icon handlers
     document.querySelector('.desktop-icon[data-win="readme"]').ondblclick = () => readmePopup.style.display = 'flex';
@@ -217,8 +255,10 @@
     });
 
     // Close buttons
-    document.getElementById('closePopup').onclick     = () => readmePopup.style.display = 'none';
-    document.getElementById('closeBlogPopup').onclick = () => blogPopup.style.display   = 'none';
+    document.getElementById('closePopup').onclick     = () => readmePopup.style.display    = 'none';
+    document.getElementById('closeBlogPopup').onclick = () => blogPopup.style.display      = 'none';
+    document.getElementById('closeSocial').onclick    = () => socialPopup.style.display    = 'none';
+    document.getElementById('closeFavorites').onclick = () => favoritesPopup.style.display = 'none';
     document.querySelectorAll('.btn.close').forEach(b => b.onclick = () => b.closest('.window').style.display = 'none');
 
     // Drag windows
@@ -228,6 +268,18 @@
       bar.onpointerdown = e => { drag=true; ox=e.clientX-win.offsetLeft; oy=e.clientY-win.offsetTop; bring(win); };
       document.onpointermove = e => drag && (win.style.left=(e.clientX-ox)+'px', win.style.top=(e.clientY-oy)+'px');
       document.onpointerup   = () => drag=false;
+    });
+
+    // Menu popups logic
+    const menuItems = document.querySelectorAll('.menu-bar .menu-items div');
+    menuItems[2].onclick = () => socialPopup.style.display    = 'flex'; // Social
+    menuItems[1].onclick = () => favoritesPopup.style.display = 'flex'; // Favorites
+
+    document.querySelectorAll('.link-btn').forEach(btn => {
+      btn.onclick = () => {
+        const url = btn.dataset.url;
+        if (url) window.open(url, '_blank');
+      };
     });
   </script>
 </body>
