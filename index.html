@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,7 +13,7 @@
     html, body {
       width:100%; height:100%;
       background: #333;
-      /* remove overflow:hidden so popups can scroll if needed */
+      overflow:hidden;
     }
     body {
       font-family:'Chicago',monospace;
@@ -151,7 +151,7 @@
 </head>
 <body>
   <div class="frame">
-    <!-- traffic lights (static) -->
+    <!-- traffic lights -->
     <div class="mac-buttons">
       <button class="mac-btn green"></button>
       <button class="mac-btn yellow"></button>
@@ -160,7 +160,7 @@
 
     <!-- Menu Bar -->
     <div class="menu-bar">
-      <img src="cub_mic-removebg-preview.png" class="icon" alt="" />
+      <img src="cub_mic-removebg-preview.png" class="icon" alt="Mic icon" />
       <div class="menu-items">
         <div>Work</div>
         <div>Favorites</div>
@@ -171,16 +171,15 @@
     <!-- Desktop Icons -->
     <div id="desktop-icons">
       <div class="desktop-icon" data-win="readme">
-        <!-- use a root-relative path; place your icons folder at your server root -->
-        <img src="/icons/readme.svg" alt="Read Me">
+        <img src="readme.svg" alt="Read Me">
         <div>Read Me</div>
       </div>
       <div class="desktop-icon" data-win="blog">
-        <img src="/icons/icon.png" alt="Blog">
+        <img src="icon.png" alt="Blog">
         <div>Blog</div>
       </div>
       <div class="desktop-icon" data-win="trash">
-        <img src="/icons/trash.png" alt="Trash">
+        <img src="trash.png" alt="Trash">
         <div>Trash</div>
       </div>
     </div>
@@ -191,16 +190,11 @@
         <div class="titlebar">Read Me</div>
         <div class="content">
           <h1>Michael</h1>
-          <br>
           <p><strong>Life is a journey. Just keep moving.</strong></p>
           <p>Originally from Bucharest City but have lived in Ireland for half a year, and am currently in Bucharest again. My family and I enjoy traveling and experiencing other cultures. The world and its people are amazing!</p>
-          <br>
           <h2>What I do</h2>
-          <br>
           <p>My background since 2019 is in IT with experience in programming, developing, and web design. Then I transitioned to a network administrator building custom solutions using <a href="https://chat.mistral.ai/agents" target="_blank">Mistral Agents</a>. Now I work at Salt Bank as an IT Network Administrator.</p>
-          <br>
           <h2>This Site</h2>
-          <br>
           <p>Oh and you might have noticed that I'm a Macintosh fan. Been a user since 2009. My career in IT wouldn't have been possible without Macs.</p>
           <p>Feel free to browse around my virtual computer. You never know what you might find.</p>
         </div>
@@ -244,9 +238,10 @@
     </div>
 
   </div>
+
   <script>
     // Z-index bring
-    let z=1;
+    let z = 1;
     const bring = el => el.style.zIndex = ++z;
 
     const readmePopup    = document.getElementById('myPopup');
@@ -255,8 +250,10 @@
     const favoritesPopup = document.getElementById('favoritesPopup');
 
     // Icon handlers
-    document.querySelector('.desktop-icon[data-win="readme"]').ondblclick = () => readmePopup.style.display = 'flex';
-    document.querySelector('.desktop-icon[data-win="blog"]').ondblclick   = () => blogPopup.style.display   = 'flex';
+    document.querySelector('.desktop-icon[data-win="readme"]').ondblclick =
+      () => readmePopup.style.display = 'flex';
+    document.querySelector('.desktop-icon[data-win="blog"]').ondblclick =
+      () => blogPopup.style.display   = 'flex';
 
     document.querySelectorAll('.desktop-icon').forEach(ic => {
       if (['readme','blog'].includes(ic.dataset.win)) return;
@@ -270,25 +267,41 @@
     });
 
     // Close buttons
-    document.getElementById('closePopup').onclick     = () => readmePopup.style.display    = 'none';
-    document.getElementById('closeBlogPopup').onclick = () => blogPopup.style.display      = 'none';
-    document.getElementById('closeSocial').onclick    = () => socialPopup.style.display    = 'none';
-    document.getElementById('closeFavorites').onclick = () => favoritesPopup.style.display = 'none';
-    document.querySelectorAll('.btn.close').forEach(b => b.onclick = () => b.closest('.window').style.display = 'none');
+    document.getElementById('closePopup').onclick     =
+      () => readmePopup.style.display    = 'none';
+    document.getElementById('closeBlogPopup').onclick =
+      () => blogPopup.style.display      = 'none';
+    document.getElementById('closeSocial').onclick    =
+      () => socialPopup.style.display    = 'none';
+    document.getElementById('closeFavorites').onclick =
+      () => favoritesPopup.style.display = 'none';
+    document.querySelectorAll('.btn.close').forEach(b =>
+      b.onclick = () => b.closest('.window').style.display = 'none'
+    );
 
     // Drag windows
     document.querySelectorAll('.window').forEach(win => {
-      let drag=false, ox=0, oy=0;
+      let drag = false, ox = 0, oy = 0;
       const bar = win.querySelector('.titlebar');
-      bar.onpointerdown = e => { drag=true; ox=e.clientX-win.offsetLeft; oy=e.clientY-win.offsetTop; bring(win); };
-      document.onpointermove = e => drag && (win.style.left=(e.clientX-ox)+'px', win.style.top=(e.clientY-oy)+'px');
-      document.onpointerup   = () => drag=false;
+      bar.onpointerdown = e => {
+        drag = true;
+        ox = e.clientX - win.offsetLeft;
+        oy = e.clientY - win.offsetTop;
+        bring(win);
+      };
+      document.onpointermove = e => {
+        if (drag) {
+          win.style.left = (e.clientX - ox) + 'px';
+          win.style.top  = (e.clientY - oy) + 'px';
+        }
+      };
+      document.onpointerup = () => drag = false;
     });
 
     // Menu popups logic
     const menuItems = document.querySelectorAll('.menu-bar .menu-items div');
-    menuItems[2].onclick = () => socialPopup.style.display    = 'flex'; // Social
-    menuItems[1].onclick = () => favoritesPopup.style.display = 'flex'; // Favorites
+    menuItems[2].onclick = () => socialPopup.style.display    = 'flex';
+    menuItems[1].onclick = () => favoritesPopup.style.display = 'flex';
 
     document.querySelectorAll('.link-btn').forEach(btn => {
       btn.onclick = () => {
